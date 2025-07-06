@@ -1,6 +1,7 @@
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.*;
 
 class Employee{
 
@@ -48,11 +49,17 @@ public class JavaStreamQuestions {
 
     public static void main(String[] strs){
 
-        System.out.println("Java Stream API Pratice");
+        System.out.println("Java Stream API Practice");
 
         CollectorsRelatedQuePra collectorsRelatedQuePra = new CollectorsRelatedQuePra();
 
-        collectorsRelatedQuePra.getAvgSalaryOfEmpByDep();
+//        collectorsRelatedQuePra.getAvgSalaryOfEmpByDep();
+
+  //      collectorsRelatedQuePra.exampleOf_toMap();
+
+        collectorsRelatedQuePra.example_of_GroupingBy();
+
+
     }
 }
 
@@ -75,4 +82,28 @@ public class JavaStreamQuestions {
 
         System.out.println(avgSalary); // {IT=6000. ,HR=5000.0}
     }
+
+static
+
+//Example of toMap
+
+     public void exampleOf_toMap(){
+
+        Map<Integer,String> nameMap = Stream.of("Raj", "Ram", "Ron")
+                .collect(Collectors.toMap(String::length, name-> name,(v1,v2)-> v1+","+v2)); //merge function
+
+        System.out.println(" name Map - "+ nameMap);
+     }
+
+     public void example_of_GroupingBy(){
+
+        Map<Boolean,List<String>> grouped = Stream.of("raj", "amit","ram")
+                .collect(Collectors.groupingBy(s -> s.startsWith("r")));
+
+
+         System.out.println("Grouped by names starting with 'r': " + grouped);
+
+         System.out.println(" grouped - "+ grouped);
+
+     }
  }
